@@ -1,0 +1,22 @@
+PODS:
+  - alikit4 (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - alikit4 (from `.symlinks/plugins/alikit4/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  alikit4:
+    :path: ".symlinks/plugins/alikit4/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  alikit4: 7e8a970f364b12430cdb1f5f629ee606e9568bde
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+
+PODFILE CHECKSUM: 99d99d0b850399bcce7b64dcb456fa6b38aabf2f
+
+COCOAPODS: 1.12.1

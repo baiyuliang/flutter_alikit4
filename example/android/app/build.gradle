@@ -1,0 +1,131 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    namespace "com.byl.alikit4_example"
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "uni.UNI3BC2603"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 30
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('test.jks')
+            storePassword '123456'
+            keyAlias 'test'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def processManifest = output.getProcessManifestProvider().get()
+//            processManifest.doLast { task ->
+//                def outputDir = task.multiApkManifestOutputDirectory
+//                File outputDirectory
+//                if (outputDir instanceof File) {
+//                    outputDirectory = outputDir
+//                } else {
+//                    outputDirectory = outputDir.get().asFile
+//                }
+//                File manifestOutFile = file("$outputDirectory/AndroidManifest.xml")
+//                println("----------- ${manifestOutFile} ----------- ")
+//
+//                if (manifestOutFile.exists() && manifestOutFile.canRead() && manifestOutFile.canWrite()) {
+//                    def manifestFile = manifestOutFile
+//                    ///这里第二个参数是 false ，所以 namespace 是展开的，所以下面不能用 androidSpace，而是用 nameTag
+//                    def xml = new XmlParser(false, false).parse(manifestFile)
+//                    def exportedTag = "android:exported"
+//                    def nameTag = "android:name"
+//                    ///指定 space
+//                    //def androidSpace = new groovy.xml.Namespace('http://schemas.android.com/apk/res/android', 'android')
+//
+//                    def nodes = xml.application[0].'*'.findAll {
+//                        //挑选要修改的节点，没有指定的 exported 的才需要增加
+//                        //如果 exportedTag 拿不到可以尝试 it.attribute(androidSpace.exported)
+//                        (it.name() == 'activity' || it.name() == 'receiver' || it.name() == 'service') && it.attribute(exportedTag) == null
+//
+//                    }
+//                    ///添加 exported，默认 false
+//                    nodes.each {
+//                        def isMain = false
+//                        it.each {
+//                            if (it.name() == "intent-filter") {
+//                                it.each {
+//                                    if (it.name() == "action") {
+//                                        //如果 nameTag 拿不到可以尝试 it.attribute(androidSpace.name)
+//                                        if (it.attributes().get(nameTag) == "android.intent.action.MAIN") {
+//                                            isMain = true
+//                                            println("......................MAIN FOUND......................")
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        it.attributes().put(exportedTag, "${isMain}")
+//                    }
+//
+//                    PrintWriter pw = new PrintWriter(manifestFile)
+//                    pw.write(groovy.xml.XmlUtil.serialize(xml))
+//                    pw.close()
+//                }
+//            }
+//        }
+//    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
+}
