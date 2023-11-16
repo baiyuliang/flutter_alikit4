@@ -1,15 +1,25 @@
-# alikit4
+# 阿里百川标准最新版Flutter插件
 
-alibcv4 for android and ios.
+2023.9.14：
 
-## Getting Started
+当前最新版本：
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+- Android ：V4.1.0.4
+- Ios ：V4.1.0.1
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[文档地址](https://blog.csdn.net/baiyuliang2013/article/details/132875183)
 
+注意：若安卓targetSdk>=30,需在AndroidMainfest.xml中添加：
+
+```
+<queries>
+    <package android:name="com.taobao.taobao" />
+    <package android:name="com.tmall.wireless" />
+</queries>
+```
+
+否则无法调起APP！
+
+![您的支持是我的动力](https://img-blog.csdnimg.cn/3f598ff3e7e64220b00d14cb4c4e6e2f.jpeg)
+
+您的支持是我的动力！
