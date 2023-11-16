@@ -1,7 +1,7 @@
 name: alikit4
 description: flutter plugin of alibaichuan 4.x for android and ios.
 version: 0.0.1
-homepage: 'https://blog.csdn.net/baiyuliang2013/article/details/132875183'
+homepage: 'https://github.com/baiyuliang/flutter_alikit4'
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
